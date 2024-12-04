@@ -1,15 +1,17 @@
-// netlify/functions/addCity.js
 import fs from 'fs';
 import path from 'path';
 
 exports.handler = async (event, context) => {
-	const newCity = JSON.parse(event.body);
 	try {
-		const dataPath = path.join(__dirname, 'cities.json');
+		const newCity = JSON.parse(event.body);
+		const dataPath = path.join(__dirname, '../../data/cities.json');
 		const data = fs.readFileSync(dataPath, 'utf-8');
 		const cities = JSON.parse(data);
 
-		cities.push(newCity); // Добавляем новый город в массив
+		// Добавление нового города в массив
+		cities.push(newCity);
+
+		// Запись обновленного списка в файл
 		fs.writeFileSync(dataPath, JSON.stringify(cities, null, 2));
 
 		return {

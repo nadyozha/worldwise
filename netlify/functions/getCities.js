@@ -3,8 +3,7 @@ import path from 'path';
 
 exports.handler = async (event, context) => {
 	try {
-		// Путь к файлу cities.json в вашем проекте
-		const dataPath = path.join(__dirname, 'cities.json');
+		const dataPath = path.join(__dirname, '../../data/cities.json');
 		const data = fs.readFileSync(dataPath, 'utf-8');
 		const cities = JSON.parse(data);
 
