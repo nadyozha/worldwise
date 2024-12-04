@@ -5,16 +5,21 @@ export async function fetchCitiesData(dispatch) {
 	try {
 		const res = await fetch(`${BASE_URL}/getCities`);
 		const data = await res.json();
+		// Логируем данные для отладки
+		console.log('Fetched data:', data);
+
 		if (data && Array.isArray(data.cities)) {
 			dispatch({ type: 'cities/loaded', payload: data.cities });
 		} else {
 			console.error('Expected an array but received:', data);
-			dispatch({ type: 'rejected', payload: 'Data is not an array' });
+			dispatch({ type: 'rejected', payload: 'Data is not an array or missing "cities" property' });
 		}
-	} catch {
+	} catch (error) {
+		console.error('Error fetching cities data:', error);
 		dispatch({ type: 'rejected', payload: 'There was an error loading data' });
 	}
 }
+
 
 export async function addCity(dispatch, newCity) {
 	dispatch({ type: 'loading' });
