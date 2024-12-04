@@ -1,12 +1,16 @@
-// export const BASE_URL = 'http://localhost:9000';
-export const BASE_URL = '/.netlify/functions';
+const BASE_URL = '/.netlify/functions';
 
 export async function fetchCitiesData(dispatch) {
 	dispatch({ type: 'loading' });
 	try {
 		const res = await fetch(`${BASE_URL}/getCities`);
 		const data = await res.json();
-		dispatch({ type: 'cities/loaded', payload: data });
+		if (data && Array.isArray(data.cities)) {
+			dispatch({ type: 'cities/loaded', payload: data.cities });
+		} else {
+			console.error('Expected an array but received:', data);
+			dispatch({ type: 'rejected', payload: 'Data is not an array' });
+		}
 	} catch {
 		dispatch({ type: 'rejected', payload: 'There was an error loading data' });
 	}
@@ -20,9 +24,22 @@ export async function addCity(dispatch, newCity) {
 			body: JSON.stringify(newCity),
 			headers: { 'Content-Type': 'application/json' },
 		});
+
+		// Проверяем, если статус ответа успешный
+		if (!res.ok) {
+			throw new Error('Failed to add city');
+		}
+
 		const data = await res.json();
-		dispatch({ type: 'city/created', payload: data });
-	} catch {
+
+		// Проверяем, если полученные данные содержат необходимые поля
+		if (data && data.city) {
+			dispatch({ type: 'city/created', payload: data.city });
+		} else {
+			dispatch({ type: 'rejected', payload: 'Unexpected data structure' });
+		}
+	} catch (error) {
+		console.error('Error:', error);
 		dispatch({ type: 'rejected', payload: 'There was an error creating data' });
 	}
 }

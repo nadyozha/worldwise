@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useReducer } from "react";
-import { BASE_URL, fetchCitiesData, fetchCityById, addCity, removeCity } from "./citiesHelpers";
+import { fetchCitiesData, fetchCityById, addCity, removeCity } from "./citiesHelpers";
 
 const CitiesContext = createContext();
 
