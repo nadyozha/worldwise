@@ -5,7 +5,7 @@ import path from 'path';
 exports.handler = async (event, context) => {
 	const newCity = JSON.parse(event.body);
 	try {
-		const dataPath = path.join(__dirname, '../../data/cities.json');
+		const dataPath = path.join(__dirname, 'cities.json');
 		const data = fs.readFileSync(dataPath, 'utf-8');
 		const cities = JSON.parse(data);
 
