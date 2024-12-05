@@ -3,13 +3,24 @@ const BASE_URL = '/.netlify/functions';
 export async function fetchCitiesData(dispatch) {
 	dispatch({ type: 'loading' });
 	try {
-		const res = await fetch(`${BASE_URL}/cities`);
+		const res = await fetch('/.netlify/functions/cities');
 		const data = await res.json();
-		dispatch({ type: 'cities/loaded', payload: data.cities });
-	} catch {
+
+		// Извлекаем массив городов
+		const cities = data.cities;
+
+		// Убедитесь, что это массив
+		if (!Array.isArray(cities)) {
+			throw new Error('Unexpected data format: cities is not an array');
+		}
+
+		dispatch({ type: 'cities/loaded', payload: cities });
+	} catch (error) {
+		console.error(error);
 		dispatch({ type: 'rejected', payload: 'There was an error loading data' });
 	}
 }
+
 
 export async function addCity(dispatch, newCity) {
 	dispatch({ type: 'loading' });
