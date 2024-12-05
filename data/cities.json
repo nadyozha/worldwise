@@ -25,39 +25,27 @@
       "id": "17806751"
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": "98443197"
-    },
-    {
-      "id": "2c0e",
-      "cityName": "Karlovac",
-      "country": "Croatia",
-      "emoji": "🇭🇷",
-      "date": "2024-12-04T13:06:03.674Z",
+      "id": "9aea",
+      "cityName": "Bari",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2024-12-04T19:32:30.820Z",
       "notes": "",
       "position": {
-        "lat": "45.39775775389623",
-        "lng": "15.623741186385221"
+        "lat": "41.130641736708625",
+        "lng": "16.809140186496062"
       }
     },
     {
-      "id": "9f43",
-      "cityName": "Bijelo Polje",
-      "country": "Montenegro",
-      "emoji": "🇲🇪",
-      "date": "2024-12-04T13:21:40.349Z",
+      "id": "13d7",
+      "cityName": "Vlore",
+      "country": "Albania",
+      "emoji": "🇦🇱",
+      "date": "2024-12-04T19:40:14.410Z",
       "notes": "",
       "position": {
-        "lat": "43.11702412135048",
-        "lng": "19.489746093750004"
+        "lat": "40.21039494053686",
+        "lng": "19.51172757355457"
       }
     }
   ]

@@ -1,4 +1,4 @@
-import { useCities } from '../contexts/CitiesContext';
+import useCities from '../hooks/useCities';
 import styles from './CityItem.module.css';
 import { Link } from 'react-router-dom';
 

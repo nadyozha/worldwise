@@ -7,7 +7,7 @@ import Button from "./Button";
 import BackButton from "./BackButton";
 import Message from "./Message"
 import Spinner from "./Spinner"
-import { useCities } from "../contexts/CitiesContext";
+import useCities from '../hooks/useCities';
 import { useNavigate } from "react-router-dom";
 
 function convertToEmoji(countryCode) {
