@@ -1,4 +1,3 @@
-// const BASE_URL = 'http://localhost:9000';
 const BASE_URL = '/.netlify/functions';
 
 export async function fetchCitiesData(dispatch) {
