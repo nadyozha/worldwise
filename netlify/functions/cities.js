@@ -1,44 +1,46 @@
-const fs = require('fs');
-const path = require('path');
+const citiesData = {
+	cities: [
+		{
+			cityName: "Lisbon",
+			country: "Portugal",
+			emoji: "🇵🇹",
+			date: "2027-10-31T15:59:59.138Z",
+			notes: "My favorite city so far!",
+			position: { lat: 38.727881642324164, lng: -9.140900099907554 },
+			id: "73930385",
+		},
+		{
+			cityName: "Madrid",
+			country: "Spain",
+			emoji: "🇪🇸",
+			date: "2027-07-15T08:22:53.976Z",
+			notes: "",
+			position: { lat: 40.46635901755316, lng: -3.7133789062500004 },
+			id: "17806751",
+		},
+		// остальные города
+	],
+};
 
-// Путь к файлу cities.json
-const filePath = path.join(__dirname, 'cities.json');
-
-exports.handler = async function (event) {
-	if (event.httpMethod === 'GET') {
-		// Вернуть все города
-		const citiesData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+exports.handler = async (event) => {
+	if (event.httpMethod === "GET") {
 		return {
 			statusCode: 200,
 			body: JSON.stringify(citiesData),
 		};
 	}
 
-	if (event.httpMethod === 'POST') {
-		// Добавить новый город
-		try {
-			const newCity = JSON.parse(event.body);
-
-			const citiesData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-			citiesData.cities.push(newCity);
-
-			// Сохранить изменения
-			fs.writeFileSync(filePath, JSON.stringify(citiesData, null, 2));
-
-			return {
-				statusCode: 201,
-				body: JSON.stringify(newCity),
-			};
-		} catch (error) {
-			return {
-				statusCode: 500,
-				body: JSON.stringify({ message: 'Ошибка при добавлении города' }),
-			};
-		}
+	if (event.httpMethod === "POST") {
+		const newCity = JSON.parse(event.body);
+		citiesData.cities.push(newCity);
+		return {
+			statusCode: 201,
+			body: JSON.stringify(newCity),
+		};
 	}
 
 	return {
 		statusCode: 405,
-		body: JSON.stringify({ message: 'Метод не поддерживается' }),
+		body: JSON.stringify({ error: "Method not allowed" }),
 	};
 };
