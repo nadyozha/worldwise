@@ -49,18 +49,6 @@
       "id": "7ntnb9kl5ve"
     },
     {
-      "cityName": "Saint-Michel-en-l'Herm",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2025-01-29T06:23:12.912Z",
-      "notes": "",
-      "position": {
-        "lat": "46.31263582109134",
-        "lng": "-1.2288776266163715"
-      },
-      "id": "3bi2bs2jo4q"
-    },
-    {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
@@ -73,16 +61,40 @@
       "id": "ztszi0xec6e"
     },
     {
-      "cityName": "Abrantes",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2025-01-29T06:23:22.086Z",
+      "cityName": "Kehlen",
+      "country": "Luxembourg",
+      "emoji": "🇱🇺",
+      "date": "2025-01-29T07:23:54.092Z",
       "notes": "",
       "position": {
-        "lat": "39.53298868846688",
-        "lng": "-8.216909045538092"
+        "lat": "49.67901453205312",
+        "lng": "6.045930631189107"
       },
-      "id": "wrz1p3h7tt"
+      "id": "9h4hoe5wtb4"
+    },
+    {
+      "cityName": "Merelbeke",
+      "country": "Belgium",
+      "emoji": "🇧🇪",
+      "date": "2025-01-29T07:23:57.527Z",
+      "notes": "",
+      "position": {
+        "lat": "50.94199060057047",
+        "lng": "3.717230717401435"
+      },
+      "id": "9zhxiho391u"
+    },
+    {
+      "cityName": "Breteuil",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-01-29T07:24:00.224Z",
+      "notes": "",
+      "position": {
+        "lat": "48.81619824850238",
+        "lng": "0.8604146522438995"
+      },
+      "id": "bjhhwuq0g2"
     }
   ]
 }
