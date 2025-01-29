@@ -1,64 +1,88 @@
 {
   "cities": [
     {
-      "cityName": "Lisbon",
-      "country": "Portugal",
-      "emoji": "🇵🇹",
-      "date": "2027-10-31T15:59:59.138Z",
-      "notes": "My favorite city so far!",
+      "cityName": "Nice",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-01-29T05:17:52.440Z",
+      "notes": "",
       "position": {
-        "lat": 38.727881642324164,
-        "lng": -9.140900099907554
+        "lat": "43.74084116292368",
+        "lng": "7.207585451720916"
       },
-      "id": "73930385"
+      "id": "pu2a0xfy8wt"
+    },
+    {
+      "cityName": "Ede",
+      "country": "Netherlands (Kingdom of the)",
+      "emoji": "🇳🇱",
+      "date": "2025-01-29T05:54:09.398Z",
+      "notes": "",
+      "position": {
+        "lat": "52.119022071325226",
+        "lng": "5.648475153850498"
+      },
+      "id": "fnsi1j6ey2"
+    },
+    {
+      "cityName": "Boryspil",
+      "country": "Ukraine",
+      "emoji": "🇺🇦",
+      "date": "2025-01-29T06:21:52.033Z",
+      "notes": "",
+      "position": {
+        "lat": "50.2922345020871",
+        "lng": "30.68363958034578"
+      },
+      "id": "lw2h4b3v9m"
+    },
+    {
+      "cityName": "Terni",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2025-01-29T06:22:51.397Z",
+      "notes": "",
+      "position": {
+        "lat": "42.51878352711763",
+        "lng": "12.699996195064303"
+      },
+      "id": "7ntnb9kl5ve"
+    },
+    {
+      "cityName": "Saint-Michel-en-l'Herm",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-01-29T06:23:12.912Z",
+      "notes": "",
+      "position": {
+        "lat": "46.31263582109134",
+        "lng": "-1.2288776266163715"
+      },
+      "id": "3bi2bs2jo4q"
     },
     {
       "cityName": "Madrid",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2027-07-15T08:22:53.976Z",
+      "date": "2025-01-29T06:23:20.112Z",
       "notes": "",
       "position": {
-        "lat": 40.46635901755316,
-        "lng": -3.7133789062500004
+        "lat": "40.35368973006253",
+        "lng": "-3.557766487236863"
       },
-      "id": "17806751"
+      "id": "ztszi0xec6e"
     },
     {
-      "id": "9aea",
-      "cityName": "Bari",
-      "country": "Italy",
-      "emoji": "🇮🇹",
-      "date": "2024-12-04T19:32:30.820Z",
+      "cityName": "Abrantes",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2025-01-29T06:23:22.086Z",
       "notes": "",
       "position": {
-        "lat": "41.130641736708625",
-        "lng": "16.809140186496062"
-      }
-    },
-    {
-      "id": "32af",
-      "cityName": "Le Mans",
-      "country": "France",
-      "emoji": "🇫🇷",
-      "date": "2024-12-05T10:26:23.638Z",
-      "notes": "",
-      "position": {
-        "lat": "48.02299832104887",
-        "lng": "0.2032470703125"
-      }
-    },
-    {
-      "id": "590d",
-      "cityName": "Korce",
-      "country": "Albania",
-      "emoji": "🇦🇱",
-      "date": "2024-12-05T10:30:24.447Z",
-      "notes": "",
-      "position": {
-        "lat": "40.53050177574321",
-        "lng": "20.830078125000004"
-      }
+        "lat": "39.53298868846688",
+        "lng": "-8.216909045538092"
+      },
+      "id": "wrz1p3h7tt"
     }
   ]
 }

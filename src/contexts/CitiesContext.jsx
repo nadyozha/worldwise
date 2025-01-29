@@ -1,7 +1,8 @@
-// src/contexts/CitiesContext.jsx
 import { createContext, useEffect, useState } from "react";
 
+// const BASE_URL = 'http://localhost:9000';
 const BASE_URL = '/.netlify/functions';
+
 const CitiesContext = createContext();
 
 function CitiesProvider({ children }) {
@@ -27,6 +28,7 @@ function CitiesProvider({ children }) {
 	}, [])
 
 	async function getCity(id) {
+		if (currentCity.id === id) return;
 		try {
 			setIsLoading(true);
 			const res = await fetch(`${BASE_URL}/cities/${id}`);
