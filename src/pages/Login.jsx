@@ -76,7 +76,7 @@ export default function Login() {
 					{errorPassword && <p style={{ color: 'red', fontSize: '12px' }}>{errorPassword}</p>}
 				</div>
 
-				<div>c
+				<div>
 					<Button type="primary">Login</Button>
 				</div>
 			</form>
