@@ -61,6 +61,7 @@ export default function Login() {
 						id="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
+						style={errorEmail ? { color: 'red' } : {}}
 					/>
 					{errorEmail && <p style={{ color: 'red', fontSize: '12px' }}>{errorEmail}</p>}
 				</div>
@@ -72,6 +73,7 @@ export default function Login() {
 						id="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
+						style={errorPassword ? { color: 'red' } : {}}
 					/>
 					{errorPassword && <p style={{ color: 'red', fontSize: '12px' }}>{errorPassword}</p>}
 				</div>
