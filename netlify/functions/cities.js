@@ -1,27 +1,34 @@
 const fs = require('fs');
 const path = require('path');
 
-// Предполагаем, что в корне есть папка "data/cities.json",
-// и что вы добавили в netlify.toml:
-//   [functions]
-//   included_files = ["data/**"]
-//
-// Тогда файл будет доступен в среде Netlify:
-const filePath = path.join(process.cwd(), 'data', 'cities.json');
+// Исходный путь к файлу в папке data (read-only)
+const sourcePath = path.join(process.cwd(), 'data', 'cities.json');
+// Путь к файлу во временной директории /tmp (доступно для записи)
+const tempPath = '/tmp/cities.json';
+
+// Функция для обеспечения наличия файла во временной директории
+function ensureTempFile() {
+	if (!fs.existsSync(tempPath)) {
+		// Копируем исходный файл во временную директорию
+		fs.copyFileSync(sourcePath, tempPath);
+	}
+}
 
 exports.handler = async (event) => {
+	// Обеспечиваем, что файл в /tmp существует
+	ensureTempFile();
+
+	// Читаем данные из временного файла
+	const fileData = fs.readFileSync(tempPath, 'utf-8');
+	let json = JSON.parse(fileData); // Ожидаем объект вида { "cities": [ ... ] }
+
 	const { httpMethod, path: urlPath, body } = event;
 
-	// Считываем файл cities.json
-	const fileData = fs.readFileSync(filePath, 'utf-8');
-	const json = JSON.parse(fileData); // Ожидаем { "cities": [ ... ] }
-
-	// Пример:
-	//  urlPath: "/.netlify/functions/cities"
-	//         или "/.netlify/functions/cities/12345"
-	const segments = urlPath.split('/'); // ['', '.netlify', 'functions', 'cities', 'XYZ?']
-	const lastSegment = segments.pop();   // либо 'cities', либо 'xyz...'
-	const isCitiesSegment = (lastSegment === 'cities'); // true если нет ID
+	// Пример URL: "/.netlify/functions/cities" или "/.netlify/functions/cities/12345"
+	const segments = urlPath.split('/');
+	const lastSegment = segments.pop();
+	// Если последний сегмент равен "cities", то ID отсутствует
+	const isCitiesSegment = (lastSegment === 'cities');
 	const cityId = isCitiesSegment ? null : lastSegment;
 
 	// ----------------- GET -----------------
@@ -51,7 +58,7 @@ exports.handler = async (event) => {
 	// ----------------- POST -----------------
 	if (httpMethod === 'POST') {
 		// POST /.netlify/functions/cities (добавить новый город)
-		// Только если конец пути - "cities", иначе логика не имеет смысла
+		// Только если конец пути - "cities"
 		if (!isCitiesSegment) {
 			return {
 				statusCode: 400,
@@ -61,13 +68,14 @@ exports.handler = async (event) => {
 
 		try {
 			const newCity = JSON.parse(body);
-			// Сгенерировать id, если нет
+			// Если нет ID, генерируем его
 			if (!newCity.id) {
 				newCity.id = Math.random().toString(36).slice(2);
 			}
 			json.cities.push(newCity);
 
-			fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf-8');
+			// Сохраняем изменения во временный файл
+			fs.writeFileSync(tempPath, JSON.stringify(json, null, 2), 'utf-8');
 
 			return {
 				statusCode: 201,
@@ -102,8 +110,8 @@ exports.handler = async (event) => {
 			};
 		}
 
-		// Сохраняем изменения
-		fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf-8');
+		// Сохраняем изменения во временный файл
+		fs.writeFileSync(tempPath, JSON.stringify(json, null, 2), 'utf-8');
 
 		return {
 			statusCode: 200,
