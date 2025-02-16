@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 
 // const BASE_URL = 'http://localhost:9000';
 const BASE_URL = '/.netlify/functions';
+// const BASE_URL = '/tmp';
 
 const CitiesContext = createContext();
 

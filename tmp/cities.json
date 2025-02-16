@@ -1,0 +1,148 @@
+{
+  "cities": [
+    {
+      "cityName": "Boryspil",
+      "country": "Ukraine",
+      "emoji": "🇺🇦",
+      "date": "2025-01-29T06:21:52.033Z",
+      "notes": "",
+      "position": {
+        "lat": "50.2922345020871",
+        "lng": "30.68363958034578"
+      },
+      "id": "lw2h4b3v9m"
+    },
+    {
+      "cityName": "Terni",
+      "country": "Italy",
+      "emoji": "🇮🇹",
+      "date": "2025-01-29T06:22:51.397Z",
+      "notes": "",
+      "position": {
+        "lat": "42.51878352711763",
+        "lng": "12.699996195064303"
+      },
+      "id": "7ntnb9kl5ve"
+    },
+    {
+      "cityName": "Madrid",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2025-01-29T06:23:20.112Z",
+      "notes": "",
+      "position": {
+        "lat": "40.35368973006253",
+        "lng": "-3.557766487236863"
+      },
+      "id": "ztszi0xec6e"
+    },
+    {
+      "cityName": "Kehlen",
+      "country": "Luxembourg",
+      "emoji": "🇱🇺",
+      "date": "2025-01-29T07:23:54.092Z",
+      "notes": "",
+      "position": {
+        "lat": "49.67901453205312",
+        "lng": "6.045930631189107"
+      },
+      "id": "9h4hoe5wtb4"
+    },
+    {
+      "cityName": "Merelbeke",
+      "country": "Belgium",
+      "emoji": "🇧🇪",
+      "date": "2025-01-29T07:23:57.527Z",
+      "notes": "",
+      "position": {
+        "lat": "50.94199060057047",
+        "lng": "3.717230717401435"
+      },
+      "id": "9zhxiho391u"
+    },
+    {
+      "cityName": "Breteuil",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-01-29T07:24:00.224Z",
+      "notes": "",
+      "position": {
+        "lat": "48.81619824850238",
+        "lng": "0.8604146522438995"
+      },
+      "id": "bjhhwuq0g2"
+    },
+    {
+      "cityName": "Macao",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2025-02-10T20:55:15.183Z",
+      "notes": "",
+      "position": {
+        "lat": "39.60434002647984",
+        "lng": "-8.086609874841104"
+      },
+      "id": "phgv538efis"
+    },
+    {
+      "cityName": "Ponte de Sor",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2025-02-10T20:55:23.032Z",
+      "notes": "",
+      "position": {
+        "lat": "39.20549690667737",
+        "lng": "-8.142224721799053"
+      },
+      "id": "3ll75h7zsbg"
+    },
+    {
+      "cityName": "Celles",
+      "country": "Belgium",
+      "emoji": "🇧🇪",
+      "date": "2025-02-10T20:55:33.616Z",
+      "notes": "",
+      "position": {
+        "lat": "50.6658919735464",
+        "lng": "3.492343988820164"
+      },
+      "id": "5issd4lzt63"
+    },
+    {
+      "cityName": "Bancourt",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-02-10T20:55:36.932Z",
+      "notes": "",
+      "position": {
+        "lat": "50.105384855754906",
+        "lng": "2.8882061365149925"
+      },
+      "id": "ihwvb6hm6b"
+    },
+    {
+      "cityName": "Catillon-Fumechon",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-02-10T20:55:39.747Z",
+      "notes": "",
+      "position": {
+        "lat": "49.53835313386354",
+        "lng": "2.3828067070184837"
+      },
+      "id": "dknzbkgok7f"
+    },
+    {
+      "cityName": "Montenils",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-02-10T20:55:41.748Z",
+      "notes": "",
+      "position": {
+        "lat": "48.84184830749648",
+        "lng": "3.46999667103277"
+      },
+      "id": "bnk6xe4zx7c"
+    }
+  ]
+}
