@@ -1,0 +1,52 @@
+{
+  "cities": [
+    {
+      "cityName": "Montenils",
+      "country": "France",
+      "emoji": "🇫🇷",
+      "date": "2025-02-10T20:55:41.748Z",
+      "notes": "",
+      "position": {
+        "lat": "48.84184830749648",
+        "lng": "3.46999667103277"
+      },
+      "id": "bnk6xe4zx7c"
+    },
+    {
+      "cityName": "Elbasan",
+      "country": "Albania",
+      "emoji": "🇦🇱",
+      "date": "2025-02-16T21:02:38.477Z",
+      "notes": "test",
+      "position": {
+        "lat": "40.96330795307353",
+        "lng": "20.192871093750004"
+      },
+      "id": "pe1ov4gewlm"
+    },
+    {
+      "cityName": "Sofades",
+      "country": "Greece",
+      "emoji": "🇬🇷",
+      "date": "2025-02-16T21:03:22.123Z",
+      "notes": "test",
+      "position": {
+        "lat": "39.317300373271024",
+        "lng": "22.060546875"
+      },
+      "id": "pghbhd9tfwf"
+    },
+    {
+      "cityName": "Dupnitsa",
+      "country": "Bulgaria",
+      "emoji": "🇧🇬",
+      "date": "2025-02-16T21:03:32.663Z",
+      "notes": "test",
+      "position": {
+        "lat": "42.261049162113856",
+        "lng": "23.13720703125"
+      },
+      "id": "fb4c6qlqx9c"
+    }
+  ]
+}

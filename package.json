@@ -7,7 +7,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server": "json-server --watch data/cities.json --port 9000"
+    "server": "json-server --watch /tmp/cities.json --port 9000",
+    "netlify": "netlify"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
@@ -29,6 +30,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "json-server": "^1.0.0-beta.3",
+    "netlify-cli": "^18.1.0",
     "vite": "^4.5.5",
     "vite-plugin-eslint": "^1.8.1"
   }
