@@ -1,39 +1,46 @@
+// netlify/functions/cities.js (CommonJS-синтаксис)
+
 const fs = require('fs');
 const path = require('path');
 
-// Предполагаем, что в корне есть папка "data/cities.json",
-// и что вы добавили в netlify.toml:
-//   [functions]
-//   included_files = ["data/**"]
-//
-// Тогда файл будет доступен в среде Netlify:
-const filePath = path.join(process.cwd(), 'data', 'cities.json');
+// Путь к исходному файлу (read-only), который лежит в репозитории
+const originalFilePath = path.join(process.cwd(), 'data', 'cities.json');
+
+// Путь к временной копии, где мы будем писать
+const tmpFilePath = '/tmp/cities.json';
 
 exports.handler = async (event) => {
 	const { httpMethod, path: urlPath, body } = event;
 
-	// Считываем файл cities.json
-	const fileData = fs.readFileSync(filePath, 'utf-8');
-	const json = JSON.parse(fileData); // Ожидаем { "cities": [ ... ] }
+	// 1) При первом запуске (или если файл не существует в /tmp),
+	//    копируем из оригинального read-only в /tmp
+	if (!fs.existsSync(tmpFilePath)) {
+		// Считываем read-only
+		const originalData = fs.readFileSync(originalFilePath, 'utf-8');
+		// Записываем копию в /tmp
+		fs.writeFileSync(tmpFilePath, originalData, 'utf-8');
+	}
 
-	// Пример:
-	//  urlPath: "/.netlify/functions/cities"
-	//         или "/.netlify/functions/cities/12345"
-	const segments = urlPath.split('/'); // ['', '.netlify', 'functions', 'cities', 'XYZ?']
-	const lastSegment = segments.pop();   // либо 'cities', либо 'xyz...'
-	const isCitiesSegment = (lastSegment === 'cities'); // true если нет ID
+	// 2) Теперь читаем ИМЕННО из /tmp/cities.json
+	const fileData = fs.readFileSync(tmpFilePath, 'utf-8');
+	const json = JSON.parse(fileData); // { cities: [ ... ] } — предполагаем такую структуру
+
+	// Парсим ID из URL (как в вашем коде)
+	const segments = urlPath.split('/');
+	const lastSegment = segments.pop();
+	const isCitiesSegment = (lastSegment === 'cities');
 	const cityId = isCitiesSegment ? null : lastSegment;
 
-	// ----------------- GET -----------------
+	// --------------------- GET ---------------------
 	if (httpMethod === 'GET') {
 		if (isCitiesSegment) {
-			// GET /.netlify/functions/cities — вернуть все города
+			// GET /cities -> вернуть список
 			return {
 				statusCode: 200,
 				body: JSON.stringify(json.cities),
 			};
 		} else {
-			// GET /.netlify/functions/cities/:id — вернуть один город
+			// GET /cities/:id -> вернуть один город
 			const city = json.cities.find((c) => c.id === cityId);
 			if (!city) {
 				return {
@@ -48,26 +55,35 @@ exports.handler = async (event) => {
 		}
 	}
 
-	// ----------------- POST -----------------
+	// --------------------- POST ---------------------
 	if (httpMethod === 'POST') {
-		// POST /.netlify/functions/cities (добавить новый город)
-		// Только если конец пути - "cities", иначе логика не имеет смысла
+		// POST /cities -> добавить город
 		if (!isCitiesSegment) {
 			return {
 				statusCode: 400,
 				body: JSON.stringify({ message: 'Cannot POST to an ID route' }),
 			};
 		}
-
 		try {
 			const newCity = JSON.parse(body);
-			// Сгенерировать id, если нет
+
+			// Пример простой валидации
+			if (!newCity.cityName || !newCity.position) {
+				return {
+					statusCode: 400,
+					body: JSON.stringify({ message: 'Missing cityName or position' }),
+				};
+			}
+
+			// Генерируем id, если нет
 			if (!newCity.id) {
 				newCity.id = Math.random().toString(36).slice(2);
 			}
+
 			json.cities.push(newCity);
 
-			fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf-8');
+			// Пишем ИМЕННО в /tmp/cities.json
+			fs.writeFileSync(tmpFilePath, JSON.stringify(json, null, 2), 'utf-8');
 
 			return {
 				statusCode: 201,
@@ -82,15 +98,16 @@ exports.handler = async (event) => {
 		}
 	}
 
-	// ----------------- DELETE -----------------
+	// --------------------- DELETE ---------------------
 	if (httpMethod === 'DELETE') {
-		// DELETE /.netlify/functions/cities/:id
+		// DELETE /cities/:id
 		if (!cityId || isCitiesSegment) {
 			return {
 				statusCode: 400,
 				body: JSON.stringify({ message: 'Missing city ID in path' }),
 			};
 		}
+
 		const originalLength = json.cities.length;
 		json.cities = json.cities.filter((c) => c.id !== cityId);
 
@@ -102,16 +119,15 @@ exports.handler = async (event) => {
 			};
 		}
 
-		// Сохраняем изменения
-		fs.writeFileSync(filePath, JSON.stringify(json, null, 2), 'utf-8');
-
+		// Перезаписываем /tmp/cities.json
+		fs.writeFileSync(tmpFilePath, JSON.stringify(json, null, 2), 'utf-8');
 		return {
 			statusCode: 200,
 			body: JSON.stringify({ message: 'City deleted', id: cityId }),
 		};
 	}
 
-	// ----------------- Другие методы -----------------
+	// --------------------- Иные методы ---------------------
 	return {
 		statusCode: 405,
 		body: JSON.stringify({ message: `Method ${httpMethod} not allowed` }),
